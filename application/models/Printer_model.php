@@ -17,7 +17,7 @@ class Printer_model extends CI_Model
     {
         $id_printer = $this->input->post('id_printer');
         $nama_printer = $this->input->post('nama_printer');
-        $spesifikasi = $this->input->post('spessifikasi');
+        $spesifikasi = $this->input->post('spesifikasi');
 
         $sql = "
             insert into tb_printer (id_printer, nama_printer, spesifikasi)

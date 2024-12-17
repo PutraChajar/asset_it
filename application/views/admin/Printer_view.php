@@ -29,17 +29,14 @@
 							<table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
 								<thead>
 									<tr>
-										<th>ID Printer</th>
-										<th>Nama Printer</th>
+										<th>Printer</th>
 										<th>Spesifikasi</th>
+										<th>Aksi</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php foreach ($datas as $data): ?>
 									<tr>
-										<td>
-											<?php echo $data->id_printer ?>
-										</td>
 										<td>
 											<?php echo $data->nama_printer ?>
 										</td>
@@ -47,7 +44,7 @@
 											<?php echo $data->spesifikasi ?>
 										</td>
 										<td>
-											<a onclick="editHandler('<?php echo $data->id_printer ?>', '<?php echo $data->nama_printer ?>', '<?php echo $data->spesifikasi ?>')" href="javascript:void(0);" class="btn btn-small">
+											<a onclick="editHandler('<?php echo $data->id_printer ?>', '<?php echo $data->nama_printer ?>', '<?php echo trim(preg_replace('/\s+/', ' ', $data->spesifikasi)); ?>')" href="javascript:void(0);" class="btn btn-small">
 												<i class="fas fa-edit"></i> Edit
 											</a>
 											<a onclick="deleteHandler('<?php echo $data->id_printer ?>')" href="javascript:void(0);" class="btn btn-small text-danger">
@@ -88,15 +85,16 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="id_printer">ID Printer</label>
-						<input type="text" class="form-control" id="id_printer" placeholder="Masukkan ID Printer">
+						<input type="text" class="form-control" id="id_printer" placeholder="Masukkan ID Printer" maxlength="5">
 					</div>
 					<div class="form-group">
 						<label for="nama_printer">Nama Printer</label>
-						<input type="text" class="form-control" id="nama_printer" placeholder="Masukkan Nama Printer">
+						<input type="text" class="form-control" id="nama_printer" placeholder="Masukkan Nama Printer" maxlength="50">
 					</div>
 					<div class="form-group">
-						<label for="spesifikasi">Spesifikasi</label>
-						<input type="text" class="form-control" id="spesifikasi" placeholder="Masukkan Spesifikasi Printer">
+					<label for="spesifikasi">Spesifikasi</label>
+					<!-- <input type="text" class="form-control" id="spesifikasi" placeholder="Masukkan Spesifikasi"> -->
+					<textarea class="form-control" id="spesifikasi" rows="4" cols="4"></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -144,7 +142,7 @@
 				return;
 			}
 			if ($('#nama_printer').val() == '') {
-				alert('Nama Pegawai belum diisi');
+				alert('Nama Printer belum diisi');
 				$('#nama_printer').focus();
 				return;
 			}
@@ -158,9 +156,9 @@
 				url: `Printer/simpan_data`,
 				dataType: 'JSON',
 				data: {
-					id_pegawai: $('#id_printer').val(),
-					nama_pegawai: $('#nama_printer').val(),
-					komputer: $('#spesifikasi').val()
+					id_printer: $('#id_printer').val(),
+					nama_printer: $('#nama_printer').val(),
+					spesifikasi: $('#spesifikasi').val()
 				},
 				success: function () {
 					$('#formModal').modal('hide');
@@ -200,7 +198,7 @@
 				url: `Printer/hapus_data`,
 				dataType: 'JSON',
 				data: {
-					id_pegawai: id
+					id_printer: id
 				},
 				success: function () {
 					alert('Berhasil Menghapus Data');
