@@ -32,6 +32,7 @@
 										<th>ID Komputer</th>
 										<th>Nama Komputer</th>
 										<th>Spesifikasi</th>
+										<th>Aksi</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -88,15 +89,16 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="id_komputer">ID Komputer</label>
-						<input type="text" class="form-control" id="id_komputer" placeholder="Masukkan ID Komputer">
+						<input type="text" class="form-control" id="id_komputer" placeholder="Masukkan ID Komputer" maxlength="5">
 					</div>
 					<div class="form-group">
 						<label for="nama_komputer">Nama Komputer</label>
-						<input type="text" class="form-control" id="nama_komputer" placeholder="Masukkan Nama Komputer">
+						<input type="text" class="form-control" id="nama_komputer" placeholder="Masukkan Nama Komputer" maxlength="50">
 					</div>
 					<div class="form-group">
 						<label for="spesifikasi">Spesifikasi</label>
-						<input type="text" class="form-control" id="spesifikasi" placeholder="Masukkan Spesifikasi Komputer">
+						<!-- <input type="text" class="form-control" id="spesifikasi" placeholder="Masukkan Spesifikasi Komputer"> -->
+						<textarea class="form-control" id="spesifikasi" rows="4" cols="4"></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -120,6 +122,7 @@
 			$('#id_komputer').val('').prop('disabled', false);
 			$('#nama_komputer').val('');
 			$('#spesifikasi').val('');
+			$('#aksi').val('');
 			$('#formModal').modal('show');
 		});
 
@@ -158,9 +161,9 @@
 				url: `Komputer/simpan_data`,
 				dataType: 'JSON',
 				data: {
-					id_pegawai: $('#id_komputer').val(),
-					nama_pegawai: $('#nama_komputer').val(),
-					komputer: $('#spesifikasi').val()
+					id_komputer: $('#id_komputer').val(),
+					nama_komputer: $('#nama_komputer').val(),
+					spesifikasi: $('#spesifikasi').val()
 				},
 				success: function () {
 					$('#formModal').modal('hide');

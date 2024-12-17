@@ -17,7 +17,7 @@ class Komputer_model extends CI_Model
     {
         $id_komputer = $this->input->post('id_komputer');
         $nama_komputer = $this->input->post('nama_komputer');
-        $spesifikasi = $this->input->post('spessifikasi');
+        $spesifikasi = $this->input->post('spesifikasi');
 
         $sql = "
             insert into tb_komputer (id_komputer, nama_komputer, spesifikasi)

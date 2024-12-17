@@ -9,7 +9,7 @@ class Komputer extends CI_Controller
         parent::__construct();
         $this->load->model("Komputer_model");
     }
-
+ 
     public function index()
     {
         $data["datas"] = $this->Komputer_model->ambil_data();
