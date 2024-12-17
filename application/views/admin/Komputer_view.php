@@ -29,7 +29,6 @@
 							<table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
 								<thead>
 									<tr>
-										<th>ID Komputer</th>
 										<th>Nama Komputer</th>
 										<th>Spesifikasi</th>
 										<th>Aksi</th>
@@ -38,9 +37,6 @@
 								<tbody>
 									<?php foreach ($datas as $data): ?>
 									<tr>
-										<td>
-											<?php echo $data->id_komputer ?>
-										</td>
 										<td>
 											<?php echo $data->nama_komputer ?>
 										</td>

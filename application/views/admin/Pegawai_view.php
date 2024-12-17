@@ -44,16 +44,16 @@
 											<?php echo $data->nama_pegawai ?>
 										</td>
 										<td>
-											<?php echo $data->id_komputer ?>
+											<?php echo $data->nama_komputer ?>
 										</td>
 										<td>
-											<?php echo $data->id_mouse ?>
+											<?php echo $data->nama_mouse ?>
 										</td>
 										<td>
-											<?php echo $data->id_keyboard ?>
+											<?php echo $data->nama_keyboard ?>
 										</td>
 										<td>
-											<?php echo $data->id_printer ?>
+											<?php echo $data->nama_printer ?>
 										</td>
 										<td>
 											<a onclick="editHandler('<?php echo $data->id_pegawai ?>', '<?php echo $data->nama_pegawai ?>', '<?php echo $data->id_komputer ?>', '<?php echo $data->id_mouse ?>', '<?php echo $data->id_keyboard ?>', '<?php echo $data->id_printer ?>')" href="javascript:void(0);" class="btn btn-small">
@@ -105,35 +105,19 @@
 					</div>
 					<div class="form-group">
 						<label for="komputer">Komputer</label>
-						<select class="form-control" id="komputer">
-							<option>C0001</option>
-							<option>C0002</option>
-							<option>C0003</option>
-						</select>
+						<select class="form-control" id="komputer"></select>
 					</div>
 					<div class="form-group">
 						<label for="mouse">Mouse</label>
-						<select class="form-control" id="mouse">
-							<option>M0001</option>
-							<option>M0002</option>
-							<option>M0003</option>
-						</select>
+						<select class="form-control" id="mouse"></select>
 					</div>
 					<div class="form-group">
 						<label for="keyboard">Keyboard</label>
-						<select class="form-control" id="keyboard">
-							<option>K0001</option>
-							<option>K0002</option>
-							<option>K0003</option>
-						</select>
+						<select class="form-control" id="keyboard"></select>
 					</div>
 					<div class="form-group">
 						<label for="printer">Printer</label>
-						<select class="form-control" id="printer">
-							<option>P0001</option>
-							<option>P0002</option>
-							<option>P0003</option>
-						</select>
+						<select class="form-control" id="printer"></select>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -151,6 +135,11 @@
 
 	<script>
 		var is_insert;
+
+		get_komputer();
+		get_mouse();
+		get_keyboard();
+		get_printer();
 
 		$('#tambah').on('click', function () {
 			is_insert = true;
@@ -257,6 +246,74 @@
 				},
 				error: function () {
 					alert('Gagal Menghapus Data');
+				}
+			});
+		}
+
+		function get_komputer() {
+			$.ajax({
+				type: 'POST',
+				url: `Pegawai/get_komputer`,
+				dataType: 'JSON',
+				success: function (data) {
+					$('#komputer').html('<option value="" selected disabled>-- Pilih Komputer --</option>');
+					$.each(data, function (key, val) {
+						$('#komputer').append(`<option value="${val.id_komputer}">${val.nama_komputer}</option>`);
+					});
+				},
+				error: function () {
+					toast('error', 'Gagal Mengambil Data Komputer');
+				}
+			});
+		}
+
+		function get_mouse() {
+			$.ajax({
+				type: 'POST',
+				url: `Pegawai/get_mouse`,
+				dataType: 'JSON',
+				success: function (data) {
+					$('#mouse').html('<option value="" selected disabled>-- Pilih Mouse --</option>');
+					$.each(data, function (key, val) {
+						$('#mouse').append(`<option value="${val.id_mouse}">${val.nama_mouse}</option>`);
+					});
+				},
+				error: function () {
+					toast('error', 'Gagal Mengambil Data Mouse');
+				}
+			});
+		}
+
+		function get_keyboard() {
+			$.ajax({
+				type: 'POST',
+				url: `Pegawai/get_keyboard`,
+				dataType: 'JSON',
+				success: function (data) {
+					$('#keyboard').html('<option value="" selected disabled>-- Pilih Keyboard --</option>');
+					$.each(data, function (key, val) {
+						$('#keyboard').append(`<option value="${val.id_keyboard}">${val.nama_keyboard}</option>`);
+					});
+				},
+				error: function () {
+					toast('error', 'Gagal Mengambil Data Keyboard');
+				}
+			});
+		}
+
+		function get_printer() {
+			$.ajax({
+				type: 'POST',
+				url: `Pegawai/get_printer`,
+				dataType: 'JSON',
+				success: function (data) {
+					$('#printer').html('<option value="" selected disabled>-- Pilih Printer --</option>');
+					$.each(data, function (key, val) {
+						$('#printer').append(`<option value="${val.id_printer}">${val.nama_printer}</option>`);
+					});
+					},
+				error: function () {
+					toast('error', 'Gagal Mengambil Data Printer');
 				}
 			});
 		}

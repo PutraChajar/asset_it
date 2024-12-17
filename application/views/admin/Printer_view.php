@@ -93,7 +93,6 @@
 					</div>
 					<div class="form-group">
 					<label for="spesifikasi">Spesifikasi</label>
-					<!-- <input type="text" class="form-control" id="spesifikasi" placeholder="Masukkan Spesifikasi"> -->
 					<textarea class="form-control" id="spesifikasi" rows="4" cols="4"></textarea>
 					</div>
 				</div>

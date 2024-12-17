@@ -5,8 +5,13 @@ class Pegawai_model extends CI_Model
     public function ambil_data()
     {
         $sql = "
-            select id_pegawai, nama_pegawai, id_komputer, id_mouse, id_keyboard, id_printer
-            from tb_pegawai
+            select id_pegawai, nama_pegawai, a.id_komputer, a.id_mouse, a.id_keyboard, a.id_printer,
+            nama_komputer, nama_mouse, nama_keyboard, nama_printer
+            from tb_pegawai a
+            left join tb_komputer b on b.id_komputer = a.id_komputer
+            left join tb_mouse c on c.id_mouse = a.id_mouse
+            left join tb_keyboard d on d.id_keyboard = a.id_keyboard
+            left join tb_printer e on e.id_printer = a.id_printer
         ";
 
         $data = $this->db->query($sql)->result();

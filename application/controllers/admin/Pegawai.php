@@ -8,6 +8,10 @@ class Pegawai extends CI_Controller
     {
         parent::__construct();
         $this->load->model("Pegawai_model");
+        $this->load->model("Komputer_model");
+        $this->load->model("Mouse_model");
+        $this->load->model("Keyboard_model");
+        $this->load->model("Printer_model");
     }
 
     public function index()
@@ -31,6 +35,26 @@ class Pegawai extends CI_Controller
 	public function hapus_data()
 	{
 		$data = $this->Pegawai_model->hapus_data();
+		echo json_encode($data);
+	}
+
+	public function get_komputer() {
+		$data = $this->Komputer_model->ambil_data();
+		echo json_encode($data);
+	}
+
+	public function get_mouse() {
+		$data = $this->Mouse_model->ambil_data();
+		echo json_encode($data);
+	}
+
+	public function get_keyboard() {
+		$data = $this->Keyboard_model->ambil_data();
+		echo json_encode($data);
+	}
+
+	public function get_printer() {
+		$data = $this->Printer_model->ambil_data();
 		echo json_encode($data);
 	}
 }
